@@ -69,6 +69,9 @@ if selected_tab == "EDA":
     
     st.markdown('<p style="background-color: #8a4baf; color: white; font-size: 20px; padding: 10px; border-radius: 5px; text-align: left; box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);">Correlation Table</p>', unsafe_allow_html=True)
     plt.figure(figsize = (10,11))
+    from sklearn.preprocessing import LabelEncoder
+    encoder = LabelEncoder()
+    iris['species'] = encoder.fit_transform(iris['species'])  # 'species' sütununun adını varsayıyoruz
     sns.heatmap(iris.corr(), annot = True, cmap = "coolwarm")
     st.pyplot(plt)
     
